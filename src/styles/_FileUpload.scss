@@ -1,0 +1,38 @@
+.img-preview-wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+
+    .img-preview {
+        margin: 5px;
+        position: relative;
+        width: 50px;
+        height: 50px;
+        border-radius: 2.5px;
+        box-shadow: 0 0 5px #888;
+
+        .remove-img-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #333;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            cursor: pointer;
+
+            p {
+                color: white;
+                font-size: 0.7rem;
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }
+}

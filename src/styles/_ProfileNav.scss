@@ -1,0 +1,10 @@
+.profile-nav-link {
+    text-decoration: none;
+    transition: 0.2s linear;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+
+    &:hover {
+        color: #777;
+    }
+}

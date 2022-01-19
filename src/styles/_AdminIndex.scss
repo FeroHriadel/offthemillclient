@@ -1,0 +1,9 @@
+.admin-index-link {
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: 0.3s linear;
+
+    &:hover {
+        color: #888;
+    }
+}

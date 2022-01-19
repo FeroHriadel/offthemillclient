@@ -1,0 +1,14 @@
+.toast-message {
+    z-index: 10;
+    position: fixed;
+    bottom: 2rem;
+    left: 1rem;
+}
+
+@media (max-width: 500px) {
+    .toast-message {
+        bottom: 1rem;
+        left: 1.25%;
+        width: 97.5%;
+    }
+}

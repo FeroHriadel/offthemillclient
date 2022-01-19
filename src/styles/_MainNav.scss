@@ -1,0 +1,21 @@
+.main-nav-link {
+    text-decoration: none;
+    cursor: pointer;
+    color: #ffffff8c; //to match bootstrap NavDropdown
+    margin-top: 0.75rem;
+    transition: 0.4s;
+
+    &:hover {
+        color: $font-color-very-white;
+    }
+}
+
+.main-nav-dropdown-item {
+    margin: 5px;
+    color: $font-color-dark;
+    cursor: pointer;
+
+    &:hover {
+        background: $font-color-white;
+    }
+}

@@ -2,11 +2,13 @@ import React from 'react';
 import { Card, Badge, Button } from 'react-bootstrap';
 import { FaEye, FaShoppingCart } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../hooks/useCart';
 
 
 
 const ProductCard = ({ product }) => {
     const navigate = useNavigate();
+    const { addProductToCart } = useCart();
 
     return (
         <Card style={{width: `320px`, minWidth: `240px`, margin: `0.5rem`, borderRadius: '5px', boxShadow: `-2.5px 2.5px 7.5px #666`}}>
@@ -47,7 +49,7 @@ const ProductCard = ({ product }) => {
                     {product && product.description ? `${product.description.substring(0, 50)}...` : `No description provided`}
                 </Card.Text>
 
-                <Button variant='dark' className='col-12'>
+                <Button variant='dark' className='col-12' onClick={() => addProductToCart(product)}>
                     <FaShoppingCart style={{transform: `translateY(-2.5px)`}}/> Add to Cart
                 </Button>
             </Card.Body>

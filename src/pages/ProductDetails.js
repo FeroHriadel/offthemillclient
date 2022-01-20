@@ -10,6 +10,7 @@ import 'moment-timezone';
 import { useSelector } from 'react-redux';
 import RatingModal from '../components/RatingModal';
 import RatingModalEdit from '../components/RatingModalEdit';
+import { useCart } from '../hooks/useCart';
 
 
 
@@ -17,6 +18,7 @@ const ProductDetails = () => {
     //VALUES
     const isMounted = useRef(true);
     const navigate = useNavigate();
+    const { addProductToCart } = useCart();
     const params = useParams();
     const productSlug = params.slug;
     const [product, setProduct] = useState(null);
@@ -73,6 +75,7 @@ const ProductDetails = () => {
 
     //GET REVIEWS
     const [reviews, setReviews] = useState(null);
+    const [reviewsStats, setReviewsStats] = useState({total: null, average: null});
 
     useEffect(() => {
         if (isMounted && reloadReviews && product && product.title) { //delaying api call => db only has 2 connections
@@ -84,6 +87,7 @@ const ProductDetails = () => {
                         setReviews(null);
                     } else {
                         setReviews(data.reviews);
+                        setReviewsStats({total: data.reviews_total, average: data.average_rating})
                         setReloadReviews(false);
                     }
                 })
@@ -180,12 +184,17 @@ const ProductDetails = () => {
                             <li> <p> <b>Description: </b> {product.description ? product.description : 'No description provided'} </p> </li>
                             <li> <p> <b>Brand: </b> {product.brand} </p> </li>
                             <li> <p> <b> {product.quantity > 0 ? 'In Stock' : 'Sold out'} </b> </p> </li>
+                            {
+                                reviewsStats && reviewsStats.total
+                                &&
+                                <li> <p> <b>Average Rating: {Number(reviewsStats.average).toFixed(1)}/5 ({reviewsStats.total})</b> </p> </li>
+                            }
                         </ul>
 
                         
 
-                        {/* cart & createReview buttons */}
-                        <Button variant='dark' className='m-1 col-12'>
+                        {/* addToCart & createReview buttons */}
+                        <Button variant='dark' className='m-1 col-12' onClick={() => addProductToCart({...product, images: product.images.map(img => img.url)})}>
                             <FaShoppingCart style={{transform: `translateY(-2.5px)`}}/> Add to Cart
                         </Button>
                         

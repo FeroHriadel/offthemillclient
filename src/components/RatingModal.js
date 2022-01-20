@@ -42,8 +42,13 @@ const RatingModal = ({ modalShow, setModalShow, setReloadReviews, product_id, ..
                     setBlockForm(false);
                 }
                 else {
-                    setMessage('Review submitted. Thank you.');
+                    setMessage('Thank you for your review. Closing...');
                     setReloadReviews(true);
+                    setBlockForm(false);
+                    setTimeout(() => {
+                        setMessage('');
+                        setModalShow(false)
+                    }, 2500)
                 }
             })
     }

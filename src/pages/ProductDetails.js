@@ -9,6 +9,7 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 import { useSelector } from 'react-redux';
 import RatingModal from '../components/RatingModal';
+import RatingModalEdit from '../components/RatingModalEdit';
 
 
 
@@ -66,6 +67,7 @@ const ProductDetails = () => {
 
     //EDIT RATING MODAL
     const [editModalShow, setEditModalShow] = useState(false);
+    const [editedReviewId, setEditedReviewId] = useState(null);
     
 
 
@@ -79,8 +81,8 @@ const ProductDetails = () => {
                     if (data && data.error) {
                         console.log(data.error);
                         setReloadReviews(false);
+                        setReviews(null);
                     } else {
-                        console.log(data.reviews);
                         setReviews(data.reviews);
                         setReloadReviews(false);
                     }
@@ -180,8 +182,26 @@ const ProductDetails = () => {
                             <li> <p> <b> {product.quantity > 0 ? 'In Stock' : 'Sold out'} </b> </p> </li>
                         </ul>
 
-                        <Button variant='dark' className='m-1 col-12'> <FaShoppingCart style={{transform: `translateY(-2.5px)`}}/> Add to Cart</Button>
-                        <Button variant='secondary' className='m-1 col-12' onClick={() => setModalShow(true)}> <FaSmile style={{transform: `translateY(-2.5px)`}}/> Add Review</Button>
+                        
+
+                        {/* cart & createReview buttons */}
+                        <Button variant='dark' className='m-1 col-12'>
+                            <FaShoppingCart style={{transform: `translateY(-2.5px)`}}/> Add to Cart
+                        </Button>
+                        
+                        <Button 
+                            variant='secondary' 
+                            className='m-1 col-12'
+                            onClick={() => {
+                                if (user && user.user_id) {
+                                    setModalShow(true)
+                                } else {
+                                    navigate('/login')
+                                }
+                            }}
+                        > 
+                            <FaSmile style={{transform: `translateY(-2.5px)`}}/> Add Review
+                        </Button>
                         
                     </main>
                 </div>
@@ -201,11 +221,11 @@ const ProductDetails = () => {
                             <Card.Body style={{position: `relative`}}>
                                 <div>
                                     {
-                                        user.user_id === review.user_id || user.role === 'admin'
+                                        (user && user.user_id === review.user_id) || (user && user.role === 'admin')
                                         ?
                                         <div style={{position: `absolute`, top: `0`, right: `5px`}}>
-                                            <FaEdit style={{cursor: 'pointer'}} />
-                                            <FaTimes style={{cursor: 'pointer'}} />
+                                            <FaEdit style={{cursor: 'pointer'}} onClick={() => {setEditedReviewId(review.review_id); setEditModalShow(true);}} />
+                                            <FaTimes style={{cursor: 'pointer'}} onClick={() => {setEditedReviewId(review.review_id); setEditModalShow(true)}} />
                                         </div>
                                         :
                                         '' 
@@ -225,12 +245,28 @@ const ProductDetails = () => {
                 </section>
             }
 
+
+
+            {/* createReview and updateReview modals */}
             <RatingModal
                 show={modalShow}
                 product_id={product ? product.product_id : null}
                 setReloadReviews={setReloadReviews}
                 onHide={() => setModalShow(false)}
+                setModalShow={setModalShow}
             />
+
+            <RatingModalEdit 
+                show={editModalShow}
+                setEditModalShow={setEditModalShow}
+                review_id={editedReviewId}
+                setReloadReviews={setReloadReviews}
+                onHide={() => setEditModalShow(false)}
+            />
+
+
+
+            {/*toast*/}
             <ToastMessage showToast={showToast} setShowToast={setShowToast} toastText={toastText} bgColor={bgColor} />
         </div>
     )

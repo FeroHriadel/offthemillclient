@@ -78,7 +78,7 @@ const LoginForm = () => {
                 }, 2500);
             } else {
                 setTimeout(() => {
-                    navigate('/profile');
+                    navigate(-1);
                 }, 2500);
             }
             

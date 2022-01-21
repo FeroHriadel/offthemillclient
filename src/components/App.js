@@ -43,6 +43,9 @@ import ProductsByCategory from '../pages/ProductsByCategory';
 import ProductsByTag from '../pages/ProductsByTag';
 import ProductsSearch from '../pages/ProductsSearch';
 
+//cart
+import Cart from '../pages/Cart';
+
 
 
 const App = () => {
@@ -88,6 +91,8 @@ const App = () => {
                 <Route path='products/category/:slug' element={<ProductsByCategory />} />
                 <Route path='products/tag/:slug' element={<ProductsByTag />} />
                 <Route path='products/all' element={<ProductsSearch />} />
+
+                <Route path='/cart' element={<Cart />} />
 
             </Routes>
         </React.Fragment>

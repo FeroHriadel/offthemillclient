@@ -194,7 +194,7 @@ const ProductDetails = () => {
                         
 
                         {/* addToCart & createReview buttons */}
-                        <Button variant='dark' className='m-1 col-12' onClick={() => addProductToCart({...product, images: product.images.map(img => img.url)})}>
+                        <Button variant='dark' className='m-1 col-12' onClick={() => addProductToCart({...product, images: product.images[0] == null ? [null] : product.images.map(img => img.url)})}>
                             <FaShoppingCart style={{transform: `translateY(-2.5px)`}}/> Add to Cart
                         </Button>
                         

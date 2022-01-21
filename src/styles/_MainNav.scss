@@ -19,3 +19,22 @@
         background: $font-color-white;
     }
 }
+
+.cart-items-count {
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ad4d4a;
+
+    p {
+        margin: 0;
+        padding: 0;
+        color: white;
+    }
+}

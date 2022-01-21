@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { signout } from '../actions/userActions';
+import { FaShoppingCart } from 'react-icons/fa';
+import { useCart } from '../hooks/useCart';
 
 
 
 const MainNav = () => {
-    //REDUX STUFF
+    //VALUES & DEFS
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
+    const { itemsCount } = useCart();
 
 
 
@@ -31,11 +34,24 @@ const MainNav = () => {
     //RENDER
     return (
         <Navbar bg="dark" variant='dark' expand="md" className='w-100 d-flex'>
-            <Navbar.Brand style={{marginLeft: `1rem`}}>
-                <Link to='/' className='main-nav-link'>OFF the MILL</Link>
-            </Navbar.Brand>
+            <div className='d-flex align-items-center' style={{marginLeft: '1rem'}}>
+                <Navbar.Brand>
+                    <Link to='/' className='main-nav-link' style={{color: '#eee'}}>OFF the MILL</Link>
+                </Navbar.Brand>
 
-            <Navbar.Toggle aria-controls="basic-navbar-nav" style={{marginRight: '1rem'}} />
+                <Nav.Item>
+                    <Link to='/cart' className='main-nav-link'>
+                        <div style={{position: `relative`}}>
+                            <h3><FaShoppingCart className='main-nav-link' style={{transform: `translateY(-4px)`}}/></h3>
+                            <div className='cart-items-count'>
+                                <p>{itemsCount}</p>
+                            </div>
+                        </div>
+                     </Link>
+                </Nav.Item>
+            </div>
+
+            <Navbar.Toggle aria-controls="basic-navbar-nav" style={{margin: ' 0 1rem 1rem 1rem'}} />
 
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="justify-content-end" style={{width: '100%', marginLeft: '1rem'}}>

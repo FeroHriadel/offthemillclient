@@ -109,3 +109,22 @@ export const getLatestProducts = () => {
             return {error: JSON.stringify(error)}
         })
 }
+
+
+
+//VERIFY CART PRODUCTS
+export const verifyCart = (cart) => {
+    return fetch(`${process.env.REACT_APP_API}/products/verifycart`, {
+        method: `POST`,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({cart})
+    })
+    .then(res => {
+        return res.json()
+    })
+    .catch(error => {
+        return {error: JSON.stringify(error)}
+    })
+}

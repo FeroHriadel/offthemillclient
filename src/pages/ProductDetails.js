@@ -7,7 +7,7 @@ import ToastMessage from '../components/ToastMessage';
 import { FaBackward, FaShoppingCart, FaSmile, FaEdit, FaTimes } from 'react-icons/fa';
 import Moment from 'react-moment';
 import 'moment-timezone';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import RatingModal from '../components/RatingModal';
 import RatingModalEdit from '../components/RatingModalEdit';
 import { useCart } from '../hooks/useCart';
@@ -25,6 +25,19 @@ const ProductDetails = () => {
     const [loading, setLoading] = useState(true);
     const user = useSelector(state => state.user);
     const [currentImg, setCurrentImg] = useState(null); //saves clicked img.url
+
+
+
+    //CART OFFCANVAS
+    const showOffcanvass = useSelector(state => state.showOffcanvass);
+    const dispatch = useDispatch();
+    
+    const toggleOffcanvass = () => {
+        dispatch({
+            type: 'TOGGLE_OFFCANVASS',
+            payload: !showOffcanvass
+        })
+    }
     
 
 
@@ -194,7 +207,7 @@ const ProductDetails = () => {
                         
 
                         {/* addToCart & createReview buttons */}
-                        <Button variant='dark' className='m-1 col-12' onClick={() => addProductToCart({...product, images: product.images[0] == null ? [null] : product.images.map(img => img.url)})}>
+                        <Button variant='dark' className='m-1 col-12' onClick={() => {addProductToCart({...product, images: product.images[0] == null ? [null] : product.images.map(img => img.url)}); toggleOffcanvass()}}>
                             <FaShoppingCart style={{transform: `translateY(-2.5px)`}}/> Add to Cart
                         </Button>
                         

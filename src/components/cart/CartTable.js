@@ -18,53 +18,54 @@ const CartTable = () => {
     
     return (
         <React.Fragment>
-
-            {/*TABLE HEADER */}
-            <div className='cart-table-row cart-table-header'>
-                <div className='cart-table-col'>
-                    <h6>Product</h6>
+            <div className='table-outline'>
+                {/*TABLE HEADER */}
+                <div className='cart-table-row cart-table-header'>
+                    <div className='cart-table-col'>
+                        <h6>Product</h6>
+                    </div>
+                    <div className='cart-table-col'>
+                        <h6>In Cart</h6>
+                    </div>
+                    <div className='cart-table-col'>
+                    <h6>Price</h6>
+                    </div>
                 </div>
-                <div className='cart-table-col'>
-                    <h6>In Cart</h6>
-                </div>
-                <div className='cart-table-col'>
-                <h6>Price</h6>
-                </div>
-            </div>
 
 
-            {/*TABLE ROWS */}
-            {
-                cart.map(product => (
-                    <div className='cart-table-row' key={product.product_id}>
-                        <div className='cart-table-col'>
-                            <div 
-                                className='product-thumbnail'
-                                style={{width: `60px`, minWidth: `60px`, height: `60px`, background: product.images[0] == null ? `linear-gradient(to bottom left, #eee, #ccc)` : `url(${product.images[0]}) no-repeat center center/cover`}}
-                            />
-                            <p className='product-name'>{product.title}</p>
-                        </div>
+                {/*TABLE ROWS */}
+                {
+                    cart.map(product => (
+                        <div className='cart-table-row' key={product.product_id}>
+                            <div className='cart-table-col'>
+                                <div 
+                                    className='product-thumbnail'
+                                    style={{width: `60px`, minWidth: `60px`, height: `60px`, background: product.images[0] == null ? `linear-gradient(to bottom left, #eee, #ccc)` : `url(${product.images[0]}) no-repeat center center/cover`}}
+                                />
+                                <p className='product-name'>{product.title}</p>
+                            </div>
 
-                        <div className='cart-table-col'>
-                            <div className='in-cart-inner-wrapper'>
-                                <p>{product.inCart}</p>
-                                <div className='arrows-wrapper'>
-                                    <p onClick={() => addProductToCart(product)}><FaSortUp /></p>
-                                    <p onClick={() => subtractOne(product.product_id)}><FaSortDown /></p>
+                            <div className='cart-table-col'>
+                                <div className='in-cart-inner-wrapper'>
+                                    <p>{product.inCart}</p>
+                                    <div className='arrows-wrapper'>
+                                        <p onClick={() => addProductToCart(product)}><FaSortUp /></p>
+                                        <p onClick={() => subtractOne(product.product_id)}><FaSortDown /></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className='cart-table-col'>
-                            <p>{product.inCart} x ${product.price/100}</p>
+                            <div className='cart-table-col'>
+                                <p>{product.inCart} x ${product.price/100}</p>
+                            </div>
                         </div>
-                    </div>
-                ))
-            }
-
+                    ))
+                }
+            </div>
+            
 
             {/* SUMMARY */}
-            <h4 className='mt-2'>TOTAL: ${cart.reduce((acc, curr) => {
+            <h4 className='mt-5'>TOTAL: ${cart.reduce((acc, curr) => {
                 acc += curr.inCart * curr.price/100
                 return acc;
             }, 0)}</h4>

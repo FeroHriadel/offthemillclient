@@ -45,6 +45,10 @@ import ProductsSearch from '../pages/ProductsSearch';
 
 //cart
 import Cart from '../pages/Cart';
+import CartOffcanvass from './cart/Offcanvass';
+
+//checkout
+import Checkout from '../pages/Checkout';
 
 
 
@@ -52,6 +56,7 @@ const App = () => {
     return (
         <React.Fragment>
             <MainNav />
+            <CartOffcanvass />
 
             <Routes>
                 <Route path='/' element={<Home />} />
@@ -93,6 +98,10 @@ const App = () => {
                 <Route path='products/all' element={<ProductsSearch />} />
 
                 <Route path='/cart' element={<Cart />} />
+
+                <Route path='/checkout/*' element={<PrivateRoute/>}>
+                    <Route path='/checkout/*' element={<Checkout />} />
+                </Route>
 
             </Routes>
         </React.Fragment>

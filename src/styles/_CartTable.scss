@@ -1,14 +1,14 @@
+.table-outline {
+    border-top: 1px gray solid;
+    border-left: 1px gray solid;
+    border-right: 1px gray solid;
+}
+
 .cart-table-row {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
-    border-top: 1px solid gray;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
     width: 100%;
-
-    &:last-of-type {
-        border-bottom: 1px solid gray;
-    }
+    border-bottom: 1px solid gray;
 
     .cart-table-col {
         display: flex;
@@ -63,5 +63,6 @@
 }
 
 .cart-table-header {
-    background: #ddd;
+    background: #aaa;
+    color: white;
 }

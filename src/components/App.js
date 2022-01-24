@@ -49,6 +49,7 @@ import CartOffcanvass from './cart/Offcanvass';
 
 //checkout
 import Checkout from '../pages/Checkout';
+import Payment from '../pages/Payment';
 
 
 
@@ -101,6 +102,10 @@ const App = () => {
 
                 <Route path='/checkout/*' element={<PrivateRoute/>}>
                     <Route path='/checkout/*' element={<Checkout />} />
+                </Route>
+
+                <Route path='/payment/*' element={<PrivateRoute/>}>
+                    <Route path='/payment/*' element={<Payment />} />
                 </Route>
 
             </Routes>

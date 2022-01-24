@@ -1,0 +1,32 @@
+.stripe-form {
+    box-shadow: 0 0 5px #888;
+    padding: 2rem 1rem;
+    width: 400px;
+    min-width: 250px;
+    background: #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    .stripe-input {
+        background: white;
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .stripe-button {
+        width: 100%;
+        min-width: 230px;
+        text-align: center;
+        background: #343A40;
+        color: white;
+        height: 3rem;
+        cursor: pointer;
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: default;
+        }
+    }
+}

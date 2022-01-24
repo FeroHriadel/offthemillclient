@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Table, Form, Spinner, Alert } from 'react-bootstrap';
 import { useCart } from '../hooks/useCart';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,8 @@ const Checkout = () => {
     //VALUES
     const navigate = useNavigate();
     const cart = useSelector(state => state.cart);
+    const confirmedAddress = useSelector(state => state.address);
+    const dispatch = useDispatch();
     const [verifiedCart, setVerifiedCart] = useState(null);
     const [cartTotal, setCartTotal] = useState(null);
     const [error, setError] = useState('');
@@ -18,6 +20,14 @@ const Checkout = () => {
     const [address, setAddress] = useState('');
     const isMounted = useRef(true);
     const [loading, setLoading] = useState(true);
+
+
+
+    //PUT REDUX.ADDRESS TO ADDRESS INPUT
+      //in case user navigates away and then comes back here
+    useEffect(() => {
+        if (confirmedAddress) setAddress(confirmedAddress)
+    }, [])
 
 
 
@@ -116,9 +126,16 @@ const Checkout = () => {
                         name='address'
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
-                        placeholder="Please enter your address"
+                        placeholder="Please enter your name and address"
                         style={{ height: '150px', marginBottom: `0.5rem` }}
                     />
+                    {confirmedAddress && <p style={{fontSize: `0.75rem`}}>Will deliver to: {confirmedAddress}</p>}
+                    <Button 
+                        variant='primary'
+                        onClick={() => {
+                            dispatch({type: 'CHANGE_ADDRESS', payload: address})
+                        }}
+                    >{confirmedAddress ? 'Change Address' : 'Confirm Address'}</Button>
                 </div>
             }
 
@@ -128,11 +145,19 @@ const Checkout = () => {
                 !loading && verifiedCart && verifiedCart.length > 0
                 &&
                 <div className='buttons mb-5 text-center'>
-                    <Button variant='primary' style={{width: `260px`, margin: `0.25rem`}}>Pay</Button>
+                    <Button 
+                        variant='primary' 
+                        style={{width: `260px`, margin: `0.25rem`}}
+                        disabled={!confirmedAddress}
+                        onClick={() => {navigate('/payment')}}
+                    >
+                        Pay
+                    </Button>
+                    
                     <Button 
                         variant='secondary' 
                         style={{width: `260px`, margin: `0.25rem`}}
-                        onClick={() => {clearCart(); navigate('/cart')}}
+                        onClick={() => {clearCart(); dispatch({type: 'CHANGE_ADDRESS', payload: ''}); navigate('/cart')}}
                     >
                         Clear Cart
                     </Button>

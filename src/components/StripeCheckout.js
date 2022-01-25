@@ -206,7 +206,7 @@ const StripeCheckout = () => {
                         ?
                         <p className='text-center text-muted'>Processing your order...</p>
                         :
-                        <p className='text-center text-muted'>Order placed. Thank you for shopping with us. Click here to view your order status: <span onClick={() => navigate('/profile/purchasehistory')} className='text-info'>My Orders</span></p>
+                        <p className='text-center text-muted'>Order placed. Thank you for shopping with us. Click here to view your order status: <span onClick={() => navigate('/profile/purchasehistory')} className='text-info' style={{cursor: `pointer`}}>My Orders</span></p>
                         
                 }
             </form>

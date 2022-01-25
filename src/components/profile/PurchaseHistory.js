@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { getUsersOrders } from '../../actions/orderActions';
 import { useSelector } from 'react-redux';
 import { Spinner, Alert, Card, Button } from 'react-bootstrap';
-//import { Document, Page, Text, View, StyleSheet, PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+// import { Document, Page, Text, View, StyleSheet, PDFDownloadLink, PDFViewer } from '@react-pdf/renderer'  => if you want to render pdf in your app
+import Invoice from './Invoice';
 
 
 
@@ -36,7 +38,8 @@ const PurchaseHistory = () => {
 
 
 
-    //RENDER PDF
+    // RENDER PDF
+    //   if you want to show pdf in your app
     // const styles = StyleSheet.create({
     //     page: {
     //       flexDirection: 'row',
@@ -49,6 +52,7 @@ const PurchaseHistory = () => {
     //     }
     //   });
 
+    // if you want to show pdf in your app
     // const renderPDF = () => (
     //     <PDFViewer>
     //         <Document>
@@ -61,6 +65,18 @@ const PurchaseHistory = () => {
     //         </Document>
     //     </PDFViewer>
     // );
+
+
+
+    //DOWNLOAD PDF
+    const downloadPDF = (order) => (
+        <PDFDownloadLink 
+            document={<Invoice order={order}/>}
+            fileName='invoice.pdf'
+        >
+            <p style={{color: 'white', padding: `0`, margin: `0`}}>Download PDF</p>
+        </PDFDownloadLink>
+    )
 
 
 
@@ -128,10 +144,11 @@ const PurchaseHistory = () => {
                                 </div>
                             </div>
 
-                            <Button variant='primary'>Download PDF</Button>
+                            <Button variant='primary'>
+                                {downloadPDF(order)}
+                            </Button>
 
-                            {/*renderPDF()*/}
-
+                            {/*renderPDF()   //if you want to show pdf in your app*/}
                     </Card>
                 ))
             }

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { getUsersOrders } from '../../actions/orderActions';
 import { useSelector } from 'react-redux';
 import { Spinner, Alert, Card, Button } from 'react-bootstrap';
+//import { Document, Page, Text, View, StyleSheet, PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
 
 
 
@@ -32,6 +33,34 @@ const PurchaseHistory = () => {
 
         return () => isMounted.current = false;
     }, [isMounted]);
+
+
+
+    //RENDER PDF
+    // const styles = StyleSheet.create({
+    //     page: {
+    //       flexDirection: 'row',
+    //       backgroundColor: '#E4E4E4'
+    //     },
+    //     section: {
+    //       margin: 10,
+    //       padding: 10,
+    //       flexGrow: 1
+    //     }
+    //   });
+
+    // const renderPDF = () => (
+    //     <PDFViewer>
+    //         <Document>
+    //             <Page size="A4" style={styles.page}>
+    //                 <View style={styles.section}>
+    //                     <Text>Section 1</Text>
+    //                     <Text>Section 2</Text>
+    //                 </View>
+    //             </Page>
+    //         </Document>
+    //     </PDFViewer>
+    // );
 
 
 
@@ -100,6 +129,8 @@ const PurchaseHistory = () => {
                             </div>
 
                             <Button variant='primary'>Download PDF</Button>
+
+                            {/*renderPDF()*/}
 
                     </Card>
                 ))

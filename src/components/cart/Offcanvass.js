@@ -1,14 +1,16 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Offcanvas } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const CartOffcanvass = () => {
+    const navigate = useNavigate();
     const cart = useSelector(state => state.cart);
     const showOffcanvass = useSelector(state => state.showOffcanvass);
     const dispatch = useDispatch();
+
     const toggleOffcanvass = () => {
         dispatch({
             type: 'TOGGLE_OFFCANVASS',
@@ -48,9 +50,8 @@ const CartOffcanvass = () => {
                     <p className='text-center'>No products in cart</p>
                 }
 
-                <Link to='/cart'>
-                    <Button variant='primary' className='col-12'>Go to Cart</Button>
-                </Link>
+                <Button variant='primary' className='col-12' onClick={() => {toggleOffcanvass(); navigate('/cart')}}>Go to Cart</Button>
+
             </Offcanvas.Body>
         </Offcanvas>
     );

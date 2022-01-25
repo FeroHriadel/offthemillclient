@@ -59,8 +59,8 @@ const ProductCard = ({ product }) => {
                     {product && product.description ? `${product.description.substring(0, 50)}...` : `No description provided`}
                 </Card.Text>
 
-                <Button variant='dark' className='col-12' onClick={() => {addProductToCart(product); toggleOffcanvass()}}>
-                    <FaShoppingCart style={{transform: `translateY(-2.5px)`}}/> Add to Cart
+                <Button variant='dark' className='col-12' disabled={product.quantity < 1} onClick={() => {addProductToCart(product); toggleOffcanvass()}}>
+                    <FaShoppingCart style={{transform: `translateY(-2.5px)`}}/> {product.quantity < 1 ? 'Sold out :(' : 'Add to Cart'}
                 </Button>
             </Card.Body>
         </Card>

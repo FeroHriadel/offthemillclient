@@ -13,7 +13,8 @@ import ResetPassword from '../pages/auth/ResetPassword';
 //profile
 import PrivateRoute from './PrivateRoute';
 import Profile from '../pages/Profile';
-import PasswordUpdateForm from './profile/PasswordUpdateForm'; //nested
+import PasswordUpdateForm from './profile/PasswordUpdateForm';
+import PurchaseHistory from './profile/PurchaseHistory';
 
 //admin
 import AdminRoute from './AdminRoute';
@@ -68,6 +69,7 @@ const App = () => {
                 <Route path='/profile/*' element={<PrivateRoute/>}>
                     <Route path='/profile/*' element={<Profile />}>
                         <Route path='changepassword' element={<PasswordUpdateForm />} />
+                        <Route path='purchasehistory' element={<PurchaseHistory />} />
                     </Route>
                 </Route>
 

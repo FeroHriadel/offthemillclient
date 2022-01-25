@@ -1,31 +1,35 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { CardNumberElement, CardExpiryElement, CardCvcElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { createPaymentIntent } from '../actions/stripeActions';
 import { verifyCart } from '../actions/productActions';
 import { FaMoneyBillWave } from 'react-icons/fa';
 import { Alert, Spinner } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { createOrder } from '../actions/orderActions';
 
 
 
 const StripeCheckout = () => {
     //VALUES
+    const navigate = useNavigate();
     const user = useSelector(state => state.user);
     const address = useSelector(state => state.address);
-    const cart = useSelector(state => state.cart);
-    const [APIError, setAPIError] = useState('');
-    const [APILoading, setAPILoading] = useState(true);
-    const [cartTotal, setCartTotal] = useState(null);
-    const [verifiedCart, setVerifiedCart] = useState(null);
+    const dispatch = useDispatch();
+    const cart = useSelector(state => state.cart); //redux.cart (w/o verified prices)
+    const [APIError, setAPIError] = useState(''); //API error
+    const [APILoading, setAPILoading] = useState(true); //API loading
+    const [cartTotal, setCartTotal] = useState(null); //populated by verifyCart() => returns real product.price
+    const [verifiedCart, setVerifiedCart] = useState(null); //populated by verifyCart()
+    const [orderProcessing, setOrderProcessing] = useState(null); //shows `loader` for createOrder()
     const isMounted = useRef(true);
-    const [succeeded, setSuceeded] = useState(false);
-    const [error, setError] = useState(null);
-    const [processing, setProcessing] = useState('');
+    const [succeeded, setSuceeded] = useState(false); //strapi call success
+    const [error, setError] = useState(null); // strapi call error
+    const [processing, setProcessing] = useState(''); //strapi call `loader`
     const [disabled, setDisabled] = useState(true);
-    const [clientSecret, setClientSecret] = useState('');
-    const stripe = useStripe();
-    const elements = useElements();
+    const [clientSecret, setClientSecret] = useState(''); //populated by createPaymentIntent() API call
+    const stripe = useStripe(); //so stripe can render elements
+    const elements = useElements(); //stripe elements
 
 
 
@@ -82,10 +86,22 @@ const StripeCheckout = () => {
             setError(`Payment failed. ${payload.error.message}`);
             setProcessing(false);
         } else {
-            console.log(payload);
+            //console.log(payload); //payload.paymentIntent: {amount, id, payment_method, status, created, currency, ...}
             setError(null);
             setProcessing(false);
             setSuceeded(true);
+
+            setOrderProcessing('processing')
+            createOrder(address, verifiedCart, cartTotal, payload.paymentIntent, user.usertoken)
+                .then(data => {
+                    if (data && data.error) {
+                        setAPIError(`We are very sorry but a glitch occured. Your payment has been received but your order was not created. Please contact us to sort this problem out. We apologize for the inconvenience. ${data.error}`);
+                    } else {
+                        localStorage.removeItem(cart);
+                        dispatch({type: 'CLEAR_CART'});
+                        setOrderProcessing('processed');
+                    }
+                })
         }
     }
 
@@ -181,6 +197,18 @@ const StripeCheckout = () => {
 
                 {error && <p className='card-error text-center mt-3 text-danger'>{error}</p>}
                 {succeeded && <p className='card-success text-center mt-3 text-info'>Payment Successful</p>}
+                {
+                    orderProcessing === null 
+                        ? 
+                        ''
+                        :
+                        orderProcessing === 'processing'
+                        ?
+                        <p className='text-center text-muted'>Processing your order...</p>
+                        :
+                        <p className='text-center text-muted'>Order placed. Thank you for shopping with us. Click here to view your order status: <span onClick={() => navigate('/profile/purchasehistory')} className='text-info'>My Orders</span></p>
+                        
+                }
             </form>
         }
     </React.Fragment>

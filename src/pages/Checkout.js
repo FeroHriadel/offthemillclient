@@ -147,16 +147,25 @@ const Checkout = () => {
                 <div className='buttons mb-5 text-center'>
                     <Button 
                         variant='primary' 
-                        style={{width: `260px`, margin: `0.25rem`}}
+                        style={{width: `220px`, margin: `0.25rem`}}
                         disabled={!confirmedAddress}
                         onClick={() => {navigate('/payment')}}
                     >
                         Pay
                     </Button>
+
+                    <Button 
+                        variant='primary' 
+                        style={{width: `220px`, margin: `0.25rem`}}
+                        disabled={!confirmedAddress}
+                        onClick={() => {navigate('/payondelivery')}}
+                    >
+                        Pay on Delivery
+                    </Button>
                     
                     <Button 
                         variant='secondary' 
-                        style={{width: `260px`, margin: `0.25rem`}}
+                        style={{width: `220px`, margin: `0.25rem`}}
                         onClick={() => {clearCart(); dispatch({type: 'CHANGE_ADDRESS', payload: ''}); navigate('/cart')}}
                     >
                         Clear Cart

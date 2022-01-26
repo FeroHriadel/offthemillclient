@@ -38,6 +38,9 @@ import CreateProduct from './admin/products/CreateProduct';
 import AllProducts from './admin/products/AllProducts';
 import EditProduct from './admin/products/EditProduct';
 
+//admin - orders
+import OrdersIndex from './admin/orders/OrdersIndex';
+
 //products
 import ProductDetails from '../pages/ProductDetails';
 import ProductsByCategory from '../pages/ProductsByCategory';
@@ -51,6 +54,7 @@ import CartOffcanvass from './cart/Offcanvass';
 //checkout
 import Checkout from '../pages/Checkout';
 import Payment from '../pages/Payment';
+import PayOnDelivery from '../pages/PayOnDelivery';
 
 
 
@@ -92,6 +96,8 @@ const App = () => {
                         <Route path='products/create' element={<CreateProduct />} />
                         <Route path='products/all' element={<AllProducts />} />
                         <Route path='products/edit/:slug' element={<EditProduct />} />
+
+                        <Route path='orders' element={<OrdersIndex />} />
                     </Route>
                 </Route>
 
@@ -108,6 +114,10 @@ const App = () => {
 
                 <Route path='/payment/*' element={<PrivateRoute/>}>
                     <Route path='/payment/*' element={<Payment />} />
+                </Route>
+
+                <Route path='/payondelivery/*' element={<PrivateRoute/>}>
+                    <Route path='/payondelivery/*' element={<PayOnDelivery />} />
                 </Route>
 
             </Routes>

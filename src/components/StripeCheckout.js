@@ -33,7 +33,7 @@ const StripeCheckout = () => {
 
 
 
-    //GET VERIFIED CART TOTAL FROM API
+    //GET VERIFIEDCART & CARTTOTAL FROM API
     useEffect(() => {
         if (isMounted) {
             verifyCart(cart)
@@ -92,12 +92,12 @@ const StripeCheckout = () => {
             setSuceeded(true);
 
             setOrderProcessing('processing')
-            createOrder(address, verifiedCart, cartTotal, payload.paymentIntent, user.usertoken)
+            createOrder(address, verifiedCart, cartTotal, payload.paymentIntent, true, user.usertoken)
                 .then(data => {
                     if (data && data.error) {
                         setAPIError(`We are very sorry but a glitch occured. Your payment has been received but your order was not created. Please contact us to sort this problem out. We apologize for the inconvenience. ${data.error}`);
                     } else {
-                        localStorage.removeItem(cart);
+                        localStorage.removeItem('cart');
                         dispatch({type: 'CLEAR_CART'});
                         setOrderProcessing('processed');
                     }

@@ -15,6 +15,7 @@ import PrivateRoute from './PrivateRoute';
 import Profile from '../pages/Profile';
 import PasswordUpdateForm from './profile/PasswordUpdateForm';
 import PurchaseHistory from './profile/PurchaseHistory';
+import Wishlist from './profile/Wishlist';
 
 //admin
 import AdminRoute from './AdminRoute';
@@ -74,6 +75,7 @@ const App = () => {
                     <Route path='/profile/*' element={<Profile />}>
                         <Route path='changepassword' element={<PasswordUpdateForm />} />
                         <Route path='purchasehistory' element={<PurchaseHistory />} />
+                        <Route path='wishlist' element={<Wishlist />} />
                     </Route>
                 </Route>
 

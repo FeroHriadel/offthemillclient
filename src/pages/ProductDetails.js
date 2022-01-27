@@ -208,7 +208,7 @@ const ProductDetails = () => {
 
                         {/* addToCart & createReview buttons */}
                         <Button variant='dark' className='m-1 col-12' disabled={product.quantity < 1} onClick={() => {addProductToCart({...product, images: product.images[0] == null ? [null] : product.images.map(img => img.url)}); toggleOffcanvass()}}>
-                            <FaShoppingCart style={{transform: `translateY(-2.5px)`}} /> Add to Cart
+                            <FaShoppingCart style={{transform: `translateY(-2.5px)`}} /> {product.quantity < 1 ? 'Sold out :(' : 'Add to Cart'}
                         </Button>
                         
                         <Button 

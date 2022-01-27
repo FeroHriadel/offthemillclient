@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Spinner, Table, Form, Button, FormGroup } from 'react-bootstrap';
+import { Spinner, Table, Form, Button } from 'react-bootstrap';
 import { getProducts } from '../../../actions/productActions';
 import { getCategories } from '../../../actions/categoryActions';
 import { getTags } from '../../../actions/tagActions';

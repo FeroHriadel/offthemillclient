@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaBackward } from 'react-icons/fa';
 import { getProducts } from '../actions/productActions';
 import ProductCard from '../components/ProductCard';
+import Meta from '../components/Meta';
 
 
 
@@ -134,6 +135,8 @@ const ProductsByCategory = () => {
     //RENDER
     return (
         <div className='container'>
+
+            <Meta title='Off the Mill | Categories' description='categories' ogTitle='Off the Mill | Categories' ogDescription='categories' />
 
             {/* go back btn */}
             <Button 

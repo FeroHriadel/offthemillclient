@@ -6,6 +6,7 @@ import { FaBackward } from 'react-icons/fa';
 import { getProducts } from '../actions/productActions';
 import ProductCard from '../components/ProductCard';
 import { Spinner, Button } from 'react-bootstrap';
+import Meta from '../components/Meta';
 
 
 
@@ -138,6 +139,8 @@ const ProductsByTag = () => {
     //RENDER
     return (
         <div className='container'>
+
+            <Meta title='Off the Mill | Tags' description='Tags' ogTitle='Off the Mill | Tags' ogDescription='Tags' />
 
             {/* go back btn */}
             <Button 

@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import RatingModal from '../components/RatingModal';
 import RatingModalEdit from '../components/RatingModalEdit';
 import { useCart } from '../hooks/useCart';
+import Meta from '../components/Meta';
 
 
 
@@ -114,6 +115,8 @@ const ProductDetails = () => {
     //RENDER
     return (
         <div className='product-details-page container'>
+
+            <Meta title={`Off the Mill | About the Goodie`} description='About the goodie' ogTitle='Off the Mill | About the Goodie' ogDescription='About the Goodie' />
 
             {/* go back btn */}
             <Button 

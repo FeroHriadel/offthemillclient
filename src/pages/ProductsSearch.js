@@ -8,6 +8,7 @@ import { FaSearch } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { FaBackward } from 'react-icons/fa';
 import ProductCard from '../components/ProductCard';
+import Meta from '../components/Meta';
 
 
 
@@ -193,6 +194,8 @@ const ProductsSearch = () => {
     //RENDER
     return (
         <div className='container'>
+
+            <Meta title='Off the Mill | Products' description='Best goodies' ogTitle='Off the Mill | Products' ogDescription='Best goodies' />
 
             {/* go back btn */}
             <Button 

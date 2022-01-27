@@ -79,7 +79,7 @@ const Home = () => {
         {/* showcase */}
             <main className='home-showcase d-flex justify-content-center align-items-center'>
                 <img className='grapefruit-png' src={grapefruitpng} />
-                <h3 className='w-75 my-5'>It has been scientifically proven that every time you eat a grapefruit instead of your favorite goodie you feel 60% more miserable... Don't... Feel happy with us</h3>
+                <h3 className='w-75 my-5'>It has been scientifically proven that by replacing potato chips with grapefruit as a snack you can lose up to 90% of what little joy you still have left in your life... Don't... Snack happy with us</h3>
             </main>
             <div className='showcase-footer py-2 mb-5'>
                 <h5 className='footer-text'>OFF THE MILL - GOODIES YOU LOVE</h5>

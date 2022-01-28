@@ -74,7 +74,7 @@ const ProductCard = ({ product }) => {
 
                     <p 
                         style={{fontSize: `0.65rem`, cursor: `pointer`, padding: `0`, margin: `0`}}
-                        onClick={() => addProductToWishlist(product.product_id)}
+                        onClick={() => user && user.usertoken ? addProductToWishlist(product.product_id) : navigate('/login')}
                     >
                         + TO WISHLIST
                     </p>
@@ -94,7 +94,7 @@ const ProductCard = ({ product }) => {
                     }
                 </div>
 
-                <Card.Title className='d-flex w-100'>{product.title}</Card.Title>
+                <Card.Title className='d-flex justify-content-center align-items-center w-100' style={{height: `40px`}}>{product.title}</Card.Title>
                 
                 <Card.Text style={{height: `75px`}} className='d-flex w-100'>
                     {product && product.description ? `${product.description.substring(0, 50)}...` : `No description provided`}

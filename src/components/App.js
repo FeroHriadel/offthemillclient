@@ -1,67 +1,71 @@
-import React from 'react'
+import React, { useContext, lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 //auth
-import MainNav from './MainNav';
-import Home from '../pages/Home';
-import Register from '../pages/auth/Register';
-import Login from '../pages/auth/Login';
-import Activate from '../pages/auth/Activate';
-import ForgotPassword from '../pages/auth/ForgotPassword';
-import ResetPassword from '../pages/auth/ResetPassword';
+const MainNav = lazy(() => import('./MainNav'));
+const Home = lazy(() => import('../pages/Home'));
+const Register = lazy(() => import('../pages/auth/Register'));
+const Login = lazy(() => import('../pages/auth/Login'));
+const Activate = lazy(() => import('../pages/auth/Activate'));
+const ForgotPassword = lazy(() => import('../pages/auth/ForgotPassword'));
+const ResetPassword = lazy(() => import('../pages/auth/ResetPassword'));
 
 //profile
-import PrivateRoute from './PrivateRoute';
-import Profile from '../pages/Profile';
-import PasswordUpdateForm from './profile/PasswordUpdateForm';
-import PurchaseHistory from './profile/PurchaseHistory';
-import Wishlist from './profile/Wishlist';
+const PrivateRoute = lazy(() => import('./PrivateRoute'));
+const Profile = lazy(() => import('../pages/Profile'));
+const PasswordUpdateForm = lazy(() => import('./profile/PasswordUpdateForm'));
+const PurchaseHistory = lazy(() => import('./profile/PurchaseHistory'));
+const Wishlist = lazy(() => import('./profile/Wishlist'));
 
 //admin
-import AdminRoute from './AdminRoute';
-import AdminIndex from '../pages/admin/AdminIndex';
+const AdminRoute = lazy(() => import('./AdminRoute'));
+const AdminIndex = lazy(() => import('../pages/admin/AdminIndex'));
 
 //admin - categories
-import CategoriesIndex from './admin/categories/CategoriesIndex';
-import CreateCategory from './admin/categories/CreateCategory';
-import AllCategories from './admin/categories/AllCategories';
-import EditCategory from './admin/categories/EditCategory';
+const CategoriesIndex = lazy(() => import('./admin/categories/CategoriesIndex'));
+const CreateCategory = lazy(() => import('./admin/categories/CreateCategory'));
+const AllCategories = lazy(() => import('./admin/categories/AllCategories'));
+const EditCategory = lazy(() => import('./admin/categories/EditCategory'));
 
 //admin - tags
-import TagsIndex from './admin/tags/TagsIndex';
-import CreateTag from './admin/tags/CreateTag';
-import AllTags from './admin/tags/AllTags';
-import EditTag from './admin/tags/EditTag';
+const TagsIndex = lazy(() => import('./admin/tags/TagsIndex'));
+const CreateTag = lazy(() => import('./admin/tags/CreateTag'));
+const AllTags = lazy(() => import('./admin/tags/AllTags'));
+const EditTag = lazy(() => import('./admin/tags/EditTag'));
 
 //admin - products
-import ProductsIndex from './admin/products/ProductsIndex';
-import CreateProduct from './admin/products/CreateProduct';
-import AllProducts from './admin/products/AllProducts';
-import EditProduct from './admin/products/EditProduct';
+const ProductsIndex = lazy(() => import('./admin/products/ProductsIndex'));
+const CreateProduct = lazy(() => import('./admin/products/CreateProduct'));
+const AllProducts = lazy(() => import('./admin/products/AllProducts'));
+const EditProduct = lazy(() => import('./admin/products/EditProduct'));
 
 //admin - orders
-import OrdersIndex from './admin/orders/OrdersIndex';
+const OrdersIndex = lazy(() => import('./admin/orders/OrdersIndex'));
 
 //products
-import ProductDetails from '../pages/ProductDetails';
-import ProductsByCategory from '../pages/ProductsByCategory';
-import ProductsByTag from '../pages/ProductsByTag';
-import ProductsSearch from '../pages/ProductsSearch';
+const ProductDetails = lazy(() => import('../pages/ProductDetails'));
+const ProductsByCategory = lazy(() => import('../pages/ProductsByCategory'));
+const ProductsByTag = lazy(() => import('../pages/ProductsByTag'));
+const ProductsSearch = lazy(() => import('../pages/ProductsSearch'));
 
 //cart
-import Cart from '../pages/Cart';
-import CartOffcanvass from './cart/Offcanvass';
+const Cart = lazy(() => import('../pages/Cart'));
+const CartOffcanvass = lazy(() => import('./cart/Offcanvass'));
 
 //checkout
-import Checkout from '../pages/Checkout';
-import Payment from '../pages/Payment';
-import PayOnDelivery from '../pages/PayOnDelivery';
+const Checkout = lazy(() => import('../pages/Checkout'));
+const Payment = lazy(() => import('../pages/Payment'));
+const PayOnDelivery = lazy(() => import('../pages/PayOnDelivery'));
 
 
 
 const App = () => {
     return (
-        <React.Fragment>
+        <Suspense fallback={
+            <h1 style={{marginTop: '3rem', width: `100%`, textAlign: 'center'}}>
+                Getting your goodies...
+            </h1>
+        }>
             <MainNav />
             <CartOffcanvass />
 
@@ -123,7 +127,7 @@ const App = () => {
                 </Route>
 
             </Routes>
-        </React.Fragment>
+        </Suspense>
     )
 }
 

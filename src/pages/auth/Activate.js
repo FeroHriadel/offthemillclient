@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { signup } from '../../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
+import Meta from '../../components/Meta';
 
 
 
@@ -53,6 +54,7 @@ const Activate = () => {
     //RENDER
     return (
         <div className='text-center'>
+            <Meta title='Off the Mill | Activate Account' />
             <h1 className='m-5'>{text}</h1>
             <div >
                 <Button variant='primary' onClick={() => completeRegistration()}>Complete Registration</Button>

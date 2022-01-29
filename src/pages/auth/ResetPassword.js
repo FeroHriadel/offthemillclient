@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { resetPassword } from '../../actions/userActions';
 import { Form, Button, Alert } from 'react-bootstrap';
+import Meta from '../../components/Meta';
 
 
 
@@ -37,6 +38,7 @@ const ResetPassword = () => {
     //RENDER
     return (
         <div className='container'>
+            <Meta title='Off the Mill | Reset Password' />
             <h1 className='text-center mt-3'>RESET PASSWORD</h1>
 
             <div className='row mt-5'>

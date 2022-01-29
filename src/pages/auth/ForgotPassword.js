@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { forgotPassword } from '../../actions/userActions';
+import Meta from '../../components/Meta';
 
 
 
@@ -35,6 +36,8 @@ const ForgotPassword = () => {
 
     return (
         <div className='container'>
+            <Meta title='Off the Mill | Forgot Password' />
+
             <h1 className='text-center mt-3'>FORGOTTEN PASSWORD</h1>
 
             <div className='row mt-5'>

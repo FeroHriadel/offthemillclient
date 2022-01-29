@@ -5,6 +5,7 @@ import StripeCheckout from '../components/StripeCheckout';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { FaBackward } from 'react-icons/fa';
+import Meta from '../components/Meta';
 
 
 
@@ -18,6 +19,8 @@ const Payment = () => {
 
   return (
       <div className='container'>
+        <Meta title='Off the Mill | Pay' />
+
         {/* go back btn */}
         <Button 
             variant='secondary'

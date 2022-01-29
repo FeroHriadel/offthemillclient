@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import ProfileNav from '../components/profile/ProfileNav';
 import { Outlet } from 'react-router-dom';
+import Meta from '../components/Meta';
 
 
 
@@ -46,6 +47,8 @@ const Profile = () => {
     //RENDER
     return (
         <div className='text-center'>
+            <Meta title='Off the Mill | My Account' />
+
             <div>
                 <ProfileNav />
             </div>

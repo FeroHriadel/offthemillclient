@@ -4,6 +4,7 @@ import { Button, Table, Form, Spinner, Alert } from 'react-bootstrap';
 import { useCart } from '../hooks/useCart';
 import { useNavigate } from 'react-router-dom';
 import { verifyCart } from '../actions/productActions';
+import Meta from '../components/Meta';
 
 
 
@@ -56,6 +57,8 @@ const Checkout = () => {
     //RENDER
     return (
         <div className='container'>
+            <Meta title='Off the Mill | Checkout' />
+
             <h1 className='text-center my-5'>Checkout</h1>
 
 

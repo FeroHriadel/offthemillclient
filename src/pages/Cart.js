@@ -3,6 +3,7 @@ import CartTable from '../components/cart/CartTable';
 import { Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Meta from '../components/Meta';
 
 
 
@@ -12,6 +13,7 @@ const Cart = () => {
 
     return (
         <div className='container mt-5'>
+            <Meta title='Off the Mill | Cart' />
             <h1 className='text-center mb-3'>Your Cart</h1>
             <CartTable />
 

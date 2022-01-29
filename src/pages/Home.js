@@ -6,6 +6,7 @@ import { getLatestProducts } from '../actions/productActions';
 import { getCategories } from '../actions/categoryActions';
 import { getTags } from '../actions/tagActions';
 import { useNavigate } from 'react-router-dom';
+import Meta from '../components/Meta';
 
 
 
@@ -76,6 +77,8 @@ const Home = () => {
 
     return (
         <div className='home-page'>
+            <Meta title='Off the Mill | Home' />
+
         {/* showcase */}
             <main className='home-showcase d-flex justify-content-center align-items-center'>
                 <img className='grapefruit-png' src={grapefruitpng} />

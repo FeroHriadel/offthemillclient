@@ -7,6 +7,7 @@ import { FaMoneyBillWave } from 'react-icons/fa';
 import { Alert, Spinner } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { createOrder } from '../actions/orderActions';
+import Meta from '../components/Meta';
 
 
 
@@ -69,6 +70,8 @@ const PayOnDelivery = () => {
     //RENDER
     return (
         <div className='container'>
+
+            <Meta title='Off the Mill | Place Order' />
 
           {/* go back btn */}
           <Button 

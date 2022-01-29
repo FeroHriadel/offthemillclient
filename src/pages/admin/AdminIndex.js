@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AdminNav from '../../components/admin/AdminNav';
 import { Outlet } from 'react-router-dom';
+import Meta  from '../../components/Meta';
 
 
 
@@ -38,6 +39,8 @@ const AdminIndex = () => {
     //RENER
     return (
         <div className='row w-100 g-0'>
+            <Meta title='Off the Mill | Admin' />
+
             <div className='col-sm-3 g-0'> {/* Don't remove g-0, will cause width problems on sm screen */}
                 <AdminNav />
             </div>
